@@ -14,7 +14,18 @@ def task_1_fix_names_start_letter(data: DT) -> DT:
         fix_names_start_letters([{'name': 'Alex', 'age': 26}, {'name': 'denys', 'age': 89}])
         >>> [{'name': 'Alex', 'age': 26}, {'name': 'Denys', 'age': 89}]
     """
-    pass
+
+    def capitalize_student_name(student: dict) -> dict:
+        d = student.copy()
+        if "name" in d:
+            d["name"] = d["name"].title()
+        return (d)
+
+    rez = [
+        capitalize_student_name(d)
+        for d in data
+    ]
+    return rez
 
 
 def task_2_remove_dict_fields(data: DT, redundant_keys: List[str]) -> DT:
