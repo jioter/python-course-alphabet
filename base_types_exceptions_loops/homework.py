@@ -135,11 +135,11 @@ def remove_from_list_all_negative_numbers(data: List[int]) -> list:
 
 def alphabet() -> dict:
     """
-    Create dict which keys is alphabetic characters. And values their number in alphabet
-    Notes You could see an implementaion of this one in test, but create another one
+    Create dict which values is alphabetic characters. And keys their number in alphabet.
+    Notes You could see an implementaion of this one in test, but create another one.
     Examples:
         alphabet()
-        >>> {"a": 1, "b": 2 ...}
+        >>> {1:"a", 2:"b", ...}
     """
     import string 
     d = {}
