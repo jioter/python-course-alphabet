@@ -28,7 +28,7 @@ def is_two_objects_has_same_type(first: Any, second: Any) -> bool:
 
 def is_two_objects_is_the_same_objects(first: Any, second: Any) -> bool:
     """
-    If @first and @second has same type should return True
+    If @first and @second are the same object return True
     In another case should return False
     """
     return first is second
@@ -83,7 +83,10 @@ def multiple_ints_with_conversion(first_value: Any, second_value: Any) -> int:
             print("Not valid input data")
         >>> "Not valid input data"
     """
-    return int(first_value) * int(second_value)
+    try:
+        return int(first_value) * int(second_value)
+    except:
+        raise ValueError
 
 
 def is_word_in_text(word: str, text: str) -> bool:
@@ -112,7 +115,7 @@ def some_loop_exercise() -> list:
     # [i for i range(13) if not (i == 6 or i == 7)]
     x = []
     for i in range(13):
-        if i != 6 and i != 7:
+        if i not in [6, 7]:
             x.append(i)
     return x
 
