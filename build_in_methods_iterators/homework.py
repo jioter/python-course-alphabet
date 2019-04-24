@@ -36,8 +36,15 @@ def task_2_remove_dict_fields(data: DT, redundant_keys: List[str]) -> DT:
        remove_dict_field([{'name': 'Alex', 'age': 26}, {'name': 'denys', 'age': 89}], 'age')
         >>> [{'name': 'Alex'}, {'name': 'denys'}]
     """
-    pass
-
+    rez = [
+        {
+            k: v
+            for k, v in d.items()
+            if k not in redundant_keys
+        }
+        for d in data
+    ]
+    return data
 
 def task_3_find_item_via_value(data: DT, value) -> DT:
     """
@@ -46,6 +53,7 @@ def task_3_find_item_via_value(data: DT, value) -> DT:
         find_item_via_value([{'name': 'Alex', 'age': 26}, {'name': 'denys', 'age': 89}], 26)
         >>> [{'name': 'Alex', 'age': 26}]
     """
+
     pass
 
 
