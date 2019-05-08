@@ -14,7 +14,17 @@ def task_1_fix_names_start_letter(data: DT) -> DT:
         fix_names_start_letters([{'name': 'Alex', 'age': 26}, {'name': 'denys', 'age': 89}])
         >>> [{'name': 'Alex', 'age': 26}, {'name': 'Denys', 'age': 89}]
     """
-    pass
+    def capitalize_student_name(student: dict) -> dict:
+        d = student.copy()
+        if "name" in d:
+            d["name"] = d["name"].title()
+        return d
+
+    rez = [
+        capitalize_student_name(i)
+        for i in data
+    ]
+    return rez
 
 
 def task_2_remove_dict_fields(data: DT, redundant_keys: List[str]) -> DT:
@@ -25,7 +35,15 @@ def task_2_remove_dict_fields(data: DT, redundant_keys: List[str]) -> DT:
        remove_dict_field([{'name': 'Alex', 'age': 26}, {'name': 'denys', 'age': 89}], 'age')
         >>> [{'name': 'Alex'}, {'name': 'denys'}]
     """
-    pass
+    rez = [
+        {
+            k: v
+            for k, v in d.items()
+            if k not in redundant_keys
+        }
+        for d in data
+    ]
+    return rez
 
 
 def task_3_find_item_via_value(data: DT, value) -> DT:
@@ -35,21 +53,29 @@ def task_3_find_item_via_value(data: DT, value) -> DT:
         find_item_via_value([{'name': 'Alex', 'age': 26}, {'name': 'denys', 'age': 89}], 26)
         >>> [{'name': 'Alex', 'age': 26}]
     """
-    pass
+    rez = [item for item in data if item.get('name') == (value)]
+    return rez
 
 
 def task_4_min_value_integers(data: List[int]) -> int:
     """
     Find and return minimum value from list
     """
-    pass
+    return (min(data or [None]))
 
 
 def task_5_min_value_strings(data: List[Union[str, int]]) -> str:
     """
-    Find the longest string
+    Find the shorter string
     """
-    pass
+    z = []
+    for word in data:
+        z.append(len(word))
+    min_word_length = min(z)
+
+    rez = [word for word in data if len(word) == min_word_length]
+
+    return rez
 
 
 def task_6_min_value_list_of_dicts(data: DT, key: str) -> ST:
@@ -58,21 +84,33 @@ def task_6_min_value_list_of_dicts(data: DT, key: str) -> ST:
     Returns:
 
     """
-    pass
+    z = []
+    for item in members:
+        z.append(item.get('age'))
+
+    z.remove(None)
+
+    return min(z)
 
 
 def task_7_max_value_list_of_lists(data: List[List[int]]) -> int:
     """
     Find max value from list of lists
     """
-    pass
+    z = []
+
+    for i in given_data:
+        for j in i:
+            z.append(j)
+
+    return (max(z))
 
 
 def task_8_sum_of_ints(data: List[int]) -> int:
     """
     Find sum of all items in given list
     """
-    pass
+    return(sum(given_data))
 
 
 def task_9_sum_characters_positions(text: str) -> int:
@@ -88,7 +126,10 @@ def task_9_sum_characters_positions(text: str) -> int:
         >>> 532
 
     """
-    pass
+    all_ord_chars = []
+    for i in list(text):
+        all_ord_chars.append(ord(i))
+    return sum(all_ord_chars)
 
 
 def task_10_generator_of_simple_numbers() -> Generator[int, None, None]:
