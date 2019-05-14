@@ -58,51 +58,33 @@ def task_5_min_value_strings(data: List[Union[str, int]]) -> str:
     """
     Find the shorter string
     """
-    rez = min(data, default=None, key=lambda x: len(str((x))))
-
-    return str(rez)
+    rez = min(data, default=None, key=lambda x: len(str(x)))
+    return str(rez) if rez is not None else None
 
 
 def task_6_min_value_list_of_dicts(data: DT, key: str) -> ST:
     """
     Find minimum value by given key
     Returns:
-
     """
-    # z = []
-    # for item in members:
-    #     z.append(item.get('age'))
-    #
-    # z.remove(None)
-    # #
-    # return min(z)
-
     return min(
         filter(lambda x: key in x, data),
         key=lambda x: x[key]
     )
 
+
 def task_7_max_value_list_of_lists(data: List[List[int]]) -> int:
     """
     Find max value from list of lists
     """
-    z = []
-
-    for i in given_data:
-        for j in i:
-            z.append(j)
-
-    return max(z)
-    rez = [item for item in given_data]
-    rez = [item for item in given_data if value in item.values()]
-    rez = max(data, default=None, key=lambda x: len(str((x))))
-
+    rez = max([max(item) for item in data if len(item) > 0], default=None)
+    return rez
 
 def task_8_sum_of_ints(data: List[int]) -> int:
     """
     Find sum of all items in given list
     """
-    return(sum(given_data))
+    return sum(data)
 
 
 def task_9_sum_characters_positions(text: str) -> int:
@@ -119,7 +101,7 @@ def task_9_sum_characters_positions(text: str) -> int:
 
     """
     all_ord_chars = []
-    for i in list(text):
+    for i in text:
         all_ord_chars.append(ord(i))
     return sum(all_ord_chars)
 
