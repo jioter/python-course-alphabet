@@ -117,7 +117,19 @@ def task_10_generator_of_simple_numbers() -> Generator[int, None, None]:
         next(a)
         >>> 3
     """
-    pass
+
+    for possiblePrime in range(1, 201):
+        primes = []
+        for num in range(1, 101):
+            for i in range(2, num):
+                if num % i == 0:
+                    break
+                else:
+                    primes.append(num)
+                    break
+
+    random_iterator = iter(primes)
+    return random_iterator
 
 
 def task_11_create_list_of_random_characters() -> List[str]:
