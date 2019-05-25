@@ -118,18 +118,20 @@ def task_10_generator_of_simple_numbers() -> Generator[int, None, None]:
         >>> 3
     """
 
-    for possiblePrime in range(1, 201):
-        primes = []
-        for num in range(1, 101):
-            for i in range(2, num):
-                if num % i == 0:
-                    break
-                else:
-                    primes.append(num)
-                    break
+    def SieveOfEratosthenes(n):
+        prime = [True for i in range(n + 1)]
+        p = 2
+        while p * p <= n:
+            if prime[p] == True:
+                for i in range(p * p, n + 1, p):
+                    prime[i] = False
+            p += 1
+        for p in range(2, n):
+            if prime[p]:
+                yield p
 
-    random_iterator = iter(primes)
-    return random_iterator
+    rez = SieveOfEratosthenes(201)
+    return rez
 
 
 def task_11_create_list_of_random_characters() -> List[str]:
@@ -137,4 +139,10 @@ def task_11_create_list_of_random_characters() -> List[str]:
     Create list of 20 elements where each element is random letter from latin alphabet
 
     """
-    pass
+    import string
+    import random
+
+    let = string.ascii_lowercase
+    rand_list = random.choices(let, k=20)
+
+    return rand_list
