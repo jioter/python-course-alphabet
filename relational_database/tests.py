@@ -162,6 +162,7 @@ class TestSQLQueries(unittest.TestCase):
         with self.conn.cursor(cursor_factory=RealDictCursor) as cursor:
             actual_result = task_8_count_customers_by_city(cursor)
             actual_result = [dict(record) for record in actual_result]
+            print(actual_result)
             expected_result = self.load_rows_from_file("task_8.json")
 
         for i, row in enumerate(actual_result):
