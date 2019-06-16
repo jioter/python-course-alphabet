@@ -1,4 +1,6 @@
 from typing import List, Dict, Union, Generator
+import string
+import random
 
 # We will work with such dicts
 ST = Dict[str, Union[str, int]]
@@ -117,32 +119,34 @@ def task_10_generator_of_simple_numbers() -> Generator[int, None, None]:
         next(a)
         >>> 3
     """
-
-    def SieveOfEratosthenes(n):
-        prime = [True for i in range(n + 1)]
-        p = 2
-        while p * p <= n:
-            if prime[p] == True:
-                for i in range(p * p, n + 1, p):
-                    prime[i] = False
-            p += 1
-        for p in range(2, n):
-            if prime[p]:
-                yield p
-
-    rez = SieveOfEratosthenes(201)
-    return rez
-
+    for i in gen_prime():
+        if i > 200:
+            break
+        else:
+            yield i
 
 def task_11_create_list_of_random_characters() -> List[str]:
     """
     Create list of 20 elements where each element is random letter from latin alphabet
-
     """
-    import string
-    import random
 
     let = string.ascii_lowercase
     rand_list = random.choices(let, k=20)
-
     return rand_list
+
+def gen_prime():
+    primes = [2]
+    i = 2
+    yield 2
+    while True:
+        i += 1
+        is_prime = True
+        for j in primes:
+            if i % j == 0:
+                is_prime = False
+                break
+            if j * j > i:
+                break
+        if is_prime:
+            primes.append(i)
+            yield i
