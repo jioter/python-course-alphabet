@@ -247,13 +247,13 @@ def task_15_list_customers_with_any_order_or_not(cur):
 
 def task_16_match_all_customers_and_suppliers_by_country(cur):
     """
-    Match all customers and suppliers by country
+    Matc ntry
 
     Args:
         cur: psycopg cursor
 
     Returns: 194 records
     """
-    insert_query = "SELECT Customers.CustomerName, Customers.Address, Customers.Country, Suppliers.Country,Suppliers.SupplierName FROM Customers, Suppliers WHERE Customers.Country = Suppliers.Country ORDER BY Suppliers.Country ASC;"
+    insert_query = "SELECT Customers.CustomerName AS customername, Customers.address , Customers.Country AS customercountry, Suppliers.Country AS suppliercountry,Suppliers.SupplierName AS suppliername FROM Customers LEFT JOIN Suppliers ON Customers.Country = Suppliers.Country ORDER BY Customers.Country ASC, Customers.CustomerName ASC;"
     cur.execute(insert_query)
     return cur.fetchmany()
